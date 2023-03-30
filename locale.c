@@ -442,6 +442,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_CTYPE_MASK_                       LC_CTYPE_MASK,
 #    define LC_CTYPE_STRING_                    "LC_CTYPE",
 #    define LC_CTYPE_STRLEN_            STRLENs("LC_CTYPE"),
+#    define LC_CTYPE_ADD_LEN(extra)    (STRLENs("LC_CTYPE") + extra)
 #    define LC_CTYPE_GET_INDEX_CASE(var)                                    \
                                         case     LC_CTYPE:                  \
                                           var =  LC_CTYPE_INDEX_; break;
@@ -451,6 +452,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_CTYPE_MASK_
 #    define LC_CTYPE_STRING_
 #    define LC_CTYPE_STRLEN_
+#    define LC_CTYPE_ADD_LEN(extra)  0
 #    define LC_CTYPE_GET_INDEX_CASE(var)
 #    define LC_CTYPE_UPDATE_
 #  endif
@@ -459,6 +461,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_NUMERIC_MASK_                        LC_NUMERIC_MASK,
 #    define LC_NUMERIC_STRING_                     "LC_NUMERIC",
 #    define LC_NUMERIC_STRLEN_             STRLENs("LC_NUMERIC"),
+#    define LC_NUMERIC_ADD_LEN(extra)     (STRLENs("LC_NUMERIC") + extra)
 #    define LC_NUMERIC_GET_INDEX_CASE(var) case     LC_NUMERIC:              \
                                              var = LC_NUMERIC_INDEX_; break;
 #      define LC_NUMERIC_UPDATE_           S_new_numeric,
@@ -467,6 +470,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_NUMERIC_MASK_
 #    define LC_NUMERIC_STRING_
 #    define LC_NUMERIC_STRLEN_
+#    define LC_NUMERIC_ADD_LEN(extra)  0
 #    define LC_NUMERIC_GET_INDEX_CASE(var)
 #    define LC_NUMERIC_UPDATE_
 #  endif
@@ -475,6 +479,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_COLLATE_MASK_                        LC_COLLATE_MASK,
 #    define LC_COLLATE_STRING_                     "LC_COLLATE",
 #    define LC_COLLATE_STRLEN_             STRLENs("LC_COLLATE"),
+#    define LC_COLLATE_ADD_LEN(extra)     (STRLENs("LC_COLLATE") + extra)
 #    define LC_COLLATE_GET_INDEX_CASE(var) case     LC_COLLATE:              \
                                              var =  LC_COLLATE_INDEX_; break;
 #      define LC_COLLATE_UPDATE_           S_new_collate,
@@ -483,6 +488,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_COLLATE_MASK_
 #    define LC_COLLATE_STRING_
 #    define LC_COLLATE_STRLEN_
+#    define LC_COLLATE_ADD_LEN(extra)  0
 #    define LC_COLLATE_GET_INDEX_CASE(var)
 #    define LC_COLLATE_UPDATE_
 #  endif
@@ -491,6 +497,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TIME_MASK_                         LC_TIME_MASK,
 #    define LC_TIME_STRING_                      "LC_TIME",
 #    define LC_TIME_STRLEN_              STRLENs("LC_TIME"),
+#    define LC_TIME_ADD_LEN(extra)      (STRLENs("LC_TIME") + extra)
 #    define LC_TIME_GET_INDEX_CASE(var)  case     LC_TIME:                  \
                                            var =  LC_TIME_INDEX_; break;
 #    define LC_TIME_UPDATE_              NULL,
@@ -500,6 +507,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TIME_STRING_
 #    define LC_TIME_STRLEN_
 #    define LC_TIME_UPDATE_
+#    define LC_TIME_ADD_LEN(extra)  0
 #    define LC_TIME_GET_INDEX_CASE(var)
 #  endif
 #  ifdef USE_LOCALE_MESSAGES
@@ -507,6 +515,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_MESSAGES_MASK_                       LC_MESSAGES_MASK,
 #    define LC_MESSAGES_STRING_                    "LC_MESSAGES",
 #    define LC_MESSAGES_STRLEN_            STRLENs("LC_MESSAGES"),
+#    define LC_MESSAGES_ADD_LEN(extra)    (STRLENs("LC_MESSAGES") + extra)
 #    define LC_MESSAGES_GET_INDEX_CASE(var)                                 \
                                            case     LC_MESSAGES:            \
                                              var =  LC_MESSAGES_INDEX_; break;
@@ -516,6 +525,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_MESSAGES_MASK_
 #    define LC_MESSAGES_STRING_
 #    define LC_MESSAGES_STRLEN_
+#    define LC_MESSAGES_ADD_LEN(extra)  0
 #    define LC_MESSAGES_GET_INDEX_CASE(var)
 #    define LC_MESSAGES_UPDATE_
 #  endif
@@ -524,6 +534,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_MONETARY_MASK_                       LC_MONETARY_MASK,
 #    define LC_MONETARY_STRING_                    "LC_MONETARY",
 #    define LC_MONETARY_STRLEN_            STRLENs("LC_MONETARY"),
+#    define LC_MONETARY_ADD_LEN(extra)    (STRLENs("LC_MONETARY") + extra)
 #    define LC_MONETARY_GET_INDEX_CASE(var)                                 \
                                            case     LC_MONETARY:            \
                                              var =  LC_MONETARY_INDEX_; break;
@@ -533,6 +544,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_MONETARY_MASK_
 #    define LC_MONETARY_STRING_
 #    define LC_MONETARY_STRLEN_
+#    define LC_MONETARY_ADD_LEN(extra)  0
 #    define LC_MONETARY_GET_INDEX_CASE(var)
 #    define LC_MONETARY_UPDATE_
 #  endif
@@ -541,6 +553,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_ADDRESS_MASK_                      LC_ADDRESS_MASK,
 #    define LC_ADDRESS_STRING_                   "LC_ADDRESS",
 #    define LC_ADDRESS_STRLEN_           STRLENs("LC_ADDRESS"),
+#    define LC_ADDRESS_ADD_LEN(extra)   (STRLENs("LC_ADDRESS") + extra)
 #    define LC_ADDRESS_GET_INDEX_CASE(var)                                  \
                                          case     LC_ADDRESS:               \
                                            var =  LC_ADDRESS_INDEX_; break;
@@ -550,6 +563,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_ADDRESS_MASK_
 #    define LC_ADDRESS_STRING_
 #    define LC_ADDRESS_STRLEN_
+#    define LC_ADDRESS_ADD_LEN(extra)  0
 #    define LC_ADDRESS_GET_INDEX_CASE(var)
 #    define LC_ADDRESS_UPDATE_
 #  endif
@@ -558,6 +572,8 @@ static const char C_thousands_sep[] = "";
 #    define LC_IDENTIFICATION_MASK_                 LC_IDENTIFICATION_MASK,
 #    define LC_IDENTIFICATION_STRING_              "LC_IDENTIFICATION",
 #    define LC_IDENTIFICATION_STRLEN_      STRLENs("LC_IDENTIFICATION"),
+#    define LC_IDENTIFICATION_ADD_LEN(extra)                                \
+                                          (STRLENs("LC_IDENTIFICATION") + extra)
 #    define LC_IDENTIFICATION_GET_INDEX_CASE(var)                            \
                                            case     LC_IDENTIFICATION:       \
                                              var =  LC_IDENTIFICATION_INDEX_;\
@@ -568,6 +584,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_IDENTIFICATION_MASK_
 #    define LC_IDENTIFICATION_STRING_
 #    define LC_IDENTIFICATION_STRLEN_
+#    define LC_IDENTIFICATION_ADD_LEN(extra)  0
 #    define LC_IDENTIFICATION_GET_INDEX_CASE(var)
 #    define LC_IDENTIFICATION_UPDATE_
 #  endif
@@ -576,6 +593,8 @@ static const char C_thousands_sep[] = "";
 #    define LC_MEASUREMENT_MASK_                 LC_MEASUREMENT_MASK,
 #    define LC_MEASUREMENT_STRING_              "LC_MEASUREMENT",
 #    define LC_MEASUREMENT_STRLEN_      STRLENs("LC_MEASUREMENT"),
+#    define LC_MEASUREMENT_ADD_LEN(extra)                                   \
+                                       (STRLENs("LC_MEASUREMENT") + extra)
 #    define LC_MEASUREMENT_GET_INDEX_CASE(var)                              \
                                         case     LC_MEASUREMENT:            \
                                           var =  LC_MEASUREMENT_INDEX_; break;
@@ -585,6 +604,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_MEASUREMENT_MASK_
 #    define LC_MEASUREMENT_STRING_
 #    define LC_MEASUREMENT_STRLEN_
+#    define LC_MEASUREMENT_ADD_LEN(extra)  0
 #    define LC_MEASUREMENT_GET_INDEX_CASE(var)
 #    define LC_MEASUREMENT_UPDATE_
 #  endif
@@ -593,6 +613,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_PAPER_MASK_                         LC_PAPER_MASK,
 #    define LC_PAPER_STRING_                      "LC_PAPER",
 #    define LC_PAPER_STRLEN_              STRLENs("LC_PAPER"),
+#    define LC_PAPER_ADD_LEN(extra)      (STRLENs("LC_PAPER") + extra)
 #    define LC_PAPER_GET_INDEX_CASE(var)  case     LC_PAPER:                \
                                             var =  LC_PAPER_INDEX_; break;
 #    define LC_PAPER_UPDATE_              NULL,
@@ -601,6 +622,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_PAPER_MASK_
 #    define LC_PAPER_STRING_
 #    define LC_PAPER_STRLEN_
+#    define LC_PAPER_ADD_LEN(extra)  0
 #    define LC_PAPER_GET_INDEX_CASE(var)
 #    define LC_PAPER_UPDATE_
 #  endif
@@ -609,6 +631,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TELEPHONE_MASK_                       LC_TELEPHONE_MASK,
 #    define LC_TELEPHONE_STRING_                    "LC_TELEPHONE",
 #    define LC_TELEPHONE_STRLEN_            STRLENs("LC_TELEPHONE"),
+#    define LC_TELEPHONE_ADD_LEN(extra)    (STRLENs("LC_TELEPHONE") + extra)
 #    define LC_TELEPHONE_GET_INDEX_CASE(var)                                \
                                             case     LC_TELEPHONE:          \
                                               var =  LC_TELEPHONE_INDEX_; break;
@@ -618,6 +641,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TELEPHONE_MASK_
 #    define LC_TELEPHONE_STRING_
 #    define LC_TELEPHONE_STRLEN_
+#    define LC_TELEPHONE_ADD_LEN(extra)  0
 #    define LC_TELEPHONE_GET_INDEX_CASE(var)
 #    define LC_TELEPHONE_UPDATE_
 #  endif
@@ -626,6 +650,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_NAME_MASK_                        LC_NAME_MASK,
 #    define LC_NAME_STRING_                     "LC_NAME",
 #    define LC_NAME_STRLEN_             STRLENs("LC_NAME"),
+#    define LC_NAME_ADD_LEN(extra)     (STRLENs("LC_NAME") + extra)
 #    define LC_NAME_GET_INDEX_CASE(var) case     LC_NAME:                   \
                                           var =  LC_NAME_INDEX_; break;
 #    define LC_NAME_UPDATE_             NULL,
@@ -634,6 +659,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_NAME_MASK_
 #    define LC_NAME_STRING_
 #    define LC_NAME_STRLEN_
+#    define LC_NAME_ADD_LEN(extra)  0
 #    define LC_NAME_GET_INDEX_CASE(var)
 #    define LC_NAME_UPDATE_
 #  endif
@@ -642,6 +668,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_SYNTAX_MASK_                        LC_SYNTAX_MASK,
 #    define LC_SYNTAX_STRING_                     "LC_SYNTAX",
 #    define LC_SYNTAX_STRLEN_             STRLENs("LC_SYNTAX"),
+#    define LC_SYNTAX_ADD_LEN(extra)     (STRLENs("LC_SYNTAX") + extra)
 #    define LC_SYNTAX_GET_INDEX_CASE(var)  case    LC_SYNTAX:              \
                                              var = LC_SYNTAX_INDEX_; break;
 #    define LC_SYNTAX_UPDATE_           NULL,
@@ -650,6 +677,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_SYNTAX_MASK_
 #    define LC_SYNTAX_STRING_
 #    define LC_SYNTAX_STRLEN_
+#    define LC_SYNTAX_ADD_LEN(extra)  0
 #    define LC_SYNTAX_GET_INDEX_CASE(var)
 #    define LC_SYNTAX_UPDATE_
 #  endif
@@ -658,6 +686,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TOD_MASK_                         LC_TOD_MASK,
 #    define LC_TOD_STRING_                      "LC_TOD",
 #    define LC_TOD_STRLEN_              STRLENs("LC_TOD"),
+#    define LC_TOD_ADD_LEN(extra)      (STRLENs("LC_TOD") + extra)
 #    define LC_TOD_GET_INDEX_CASE(var)  case     LC_TOD:                \
                                           var =  LC_TOD_INDEX_; break;
 #    define LC_TOD_UPDATE_              NULL,
@@ -666,6 +695,7 @@ static const char C_thousands_sep[] = "";
 #    define LC_TOD_MASK_
 #    define LC_TOD_STRING_
 #    define LC_TOD_STRLEN_
+#    define LC_TOD_ADD_LEN(extra)  0
 #    define LC_TOD_GET_INDEX_CASE(var)
 #    define LC_TOD_UPDATE_
 #  endif
@@ -765,6 +795,26 @@ STATIC const Size_t category_name_lengths[] = {
                                                 LC_ALL_STRLEN_
                                                 LC_UNKNOWN_STRLEN
 };
+
+/* Each entry includes space for the '=' and ';' */
+STATIC const Size_t lc_all_boiler_plate_length = 0
+                                               + LC_CTYPE_ADD_LEN(2)
+                                               + LC_NUMERIC_ADD_LEN(2)
+                                               + LC_COLLATE_ADD_LEN(2)
+                                               + LC_TIME_ADD_LEN(2)
+                                               + LC_MESSAGES_ADD_LEN(2)
+                                               + LC_MONETARY_ADD_LEN(2)
+                                               + LC_ADDRESS_ADD_LEN(2)
+                                               + LC_IDENTIFICATION_ADD_LEN(2)
+                                               + LC_MEASUREMENT_ADD_LEN(2)
+                                               + LC_PAPER_ADD_LEN(2)
+                                               + LC_TELEPHONE_ADD_LEN(2)
+                                               + LC_NAME_ADD_LEN(2)
+                                               + LC_SYNTAX_ADD_LEN(2)
+                                               + LC_TOD_ADD_LEN(2)
+                                                 /* Doesn't include LC_ALL nor
+                                                  * LC_UNKNOWN */
+                                                ;
 
 /* A few categories require additional setup when they are changed.  This table
  * points to the functions that do that setup */
@@ -2296,13 +2346,9 @@ S_calculate_LC_ALL_string(pTHX_ const char ** category_locales_list)
 
     /* First calculate the needed size for the string listing the categories
      * and their locales. */
+    names_len = lc_all_boiler_plate_length;
     for (i = 0; i < LC_ALL_INDEX_; i++) {
-        const char * entry = locales_list[i];
-
-        names_len += category_name_lengths[i]
-                  + 1                           /* '=' */
-                  + strlen(entry)
-                  + 1;                          /* ';' */
+        names_len += strlen(locales_list[i]);
     }
 
     names_len++;    /* Trailing '\0' */
