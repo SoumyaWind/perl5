@@ -1853,6 +1853,7 @@ S_stdize_locale(pTHX_ const int category,
                           category, input_locale, caller_line));
 
     if (input_locale == NULL) {
+        SET_EINVAL;
         return NULL;
     }
 
