@@ -1251,7 +1251,7 @@ Perl_force_locale_unlock()
 
 #if defined(USE_LOCALE_THREADS)
 
-    dTHX;
+    dTHX;  /* Maybe XXX pthx */
 
     /* If recursively locked, clear all at once */
     if (PL_locale_mutex_depth > 1) {
@@ -4800,6 +4800,8 @@ S_win32_setlocale(pTHX_ int category, const char* locale)
     else {
         Safefree(PL_cur_LC_ALL);
         PL_cur_LC_ALL = new_lc_all;
+
+        DEBUG_L(PerlIO_printf(Perl_debug_log, "new PL_cur_LC_ALL=%s\n", PL_cur_LC_ALL));
     }
 
 #  endif
@@ -5006,7 +5008,9 @@ Perl_setlocale(const int category, const char * locale)
      * calculate new folding or collation rules.  But for LC_NUMERIC, we have
      * to switch into a locale that has a dot radix. */
     if (update_functions[cat_index]) {
-        update_functions[cat_index](aTHX_ current_locale, false);
+        update_functions[cat_index](aTHX_ current_locale,
+                                          false     /* XXX */
+                                   );
     }
 
     /* Make sure the result is in a stable buffer for the caller's use, and is
@@ -5280,6 +5284,7 @@ Perl_is_cur_locale_utf8(pTHX_ const int category)
 #ifdef USE_LOCALE
 
 // XXX can't this be a no-op if unthreaded
+// pTHX_
 STATIC const char *
 S_save_to_buffer(const char * string, const char **buf, Size_t *buf_size)
 {
@@ -7626,7 +7631,7 @@ S_give_perl_locale_control(pTHX_
 
 #  endif
 
-    /* Finally, update our remaining records.  'true' => force recalculation */
+    /* Finally, update our remaining records.  'true' => force recalculation; XXX why needed */
 
 #  if defined(LC_ALL)
 
