@@ -41,7 +41,7 @@ sub _croak { require Carp; Carp::croak(@_) }
 #pod   read or write takes longer than the timeout, the request response status code
 #pod   will be 599.
 #pod * C<verify_SSL> — A boolean that indicates whether to validate the SSL
-#pod   certificate of an C<https> — connection (default is false)
+#pod   certificate of an C<https> — connection (default is true)
 #pod * C<SSL_options> — A hashref of C<SSL_*> — options to pass through to
 #pod   L<IO::Socket::SSL>
 #pod
@@ -115,7 +115,7 @@ sub new {
         max_redirect => 5,
         timeout      => defined $args{timeout} ? $args{timeout} : 60,
         keep_alive   => 1,
-        verify_SSL   => $args{verify_SSL} || $args{verify_ssl} || 0, # no verification by default
+        verify_SSL   => $args{verify_SSL} // $args{verify_ssl} // 1, # verification by default
         no_proxy     => $ENV{no_proxy},
     };
 
@@ -1060,7 +1060,7 @@ sub new {
         timeout          => 60,
         max_line_size    => 16384,
         max_header_lines => 64,
-        verify_SSL       => 0,
+        verify_SSL       => 1,
         SSL_options      => {},
         %args
     }, $class;
@@ -1802,7 +1802,7 @@ C<timeout> — Request timeout in seconds (default is 60) If a socket open, read
 
 =item *
 
-C<verify_SSL> — A boolean that indicates whether to validate the SSL certificate of an C<https> — connection (default is false)
+C<verify_SSL> — A boolean that indicates whether to validate the SSL certificate of an C<https> — connection (default is true)
 
 =item *
 
@@ -2078,7 +2078,7 @@ Verification of server identity
 
 =back
 
-B<By default, HTTP::Tiny does not verify server identity>.
+B<By default, HTTP::Tiny does verifies server identity>.
 
 Server identity verification is controversial and potentially tricky because it
 depends on a (usually paid) third-party Certificate Authority (CA) trust model
@@ -2086,16 +2086,14 @@ to validate a certificate as legitimate.  This discriminates against servers
 with self-signed certificates or certificates signed by free, community-driven
 CA's such as L<CAcert.org|http://cacert.org>.
 
-By default, HTTP::Tiny does not make any assumptions about your trust model,
-threat level or risk tolerance.  It just aims to give you an encrypted channel
-when you need one.
-
 Setting the C<verify_SSL> attribute to a true value will make HTTP::Tiny verify
 that an SSL connection has a valid SSL certificate corresponding to the host
 name of the connection and that the SSL certificate has been verified by a CA.
 Assuming you trust the CA, this will protect against a L<man-in-the-middle
-attack|http://en.wikipedia.org/wiki/Man-in-the-middle_attack>.  If you are
-concerned about security, you should enable this option.
+attack|http://en.wikipedia.org/wiki/Man-in-the-middle_attack>.
+
+If you are not concerned about security, and this in default causes problems,
+you should disable this option.
 
 Certificate verification requires a file containing trusted CA certificates.
 
